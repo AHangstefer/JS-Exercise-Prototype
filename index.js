@@ -109,20 +109,34 @@ console.log(car1);
     - Besides the methods on Person.prototype, babies have the ability to `.play()`:
         + Should return a string "Playing with x", x being the favorite toy.
 */
-function Baby() {
+function Baby(name, age, favoriteToy) {
 
+  Person.call(this, name, age);
+  this.favoriteToy = favoriteToy;
 }
+
+Baby.prototype = Object.create(Person.prototype);
+
+
+Baby.prototype.play = function(favoriteToy) {
+  this.favoriteToy = favoriteToy;
+  return `Playing with ${this.favoriteToy}`;
+};
+
+let baby1 = new Baby("Franky", "3");
+console.log(baby1.play("spoon"));
 
 /* 
   TASK 4
 
   In your own words explain the four principles for the "this" keyword below:
-  1. 
-  2. 
-  3. 
-  4. 
+  1. Window/Global object binding: value of "this" will be window/console object.
+  2. Implicit Binding: the object before the dot is "this".
+  3. Constructor Function: A function that returns an object. Object creator.
+  4.Explicit Binding:  If binding is explicit, an operation which returns an interface
+   reference does not create a surrogate as part of the unmarshalling process, but 
+   instead provides a local interface which can be later used to create a binding.
 */
-
 
 ///////// END OF CHALLENGE /////////
 ///////// END OF CHALLENGE /////////
